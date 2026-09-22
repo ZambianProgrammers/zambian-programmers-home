@@ -32,7 +32,7 @@ A desktop-style terminal window sits centered on a well recognizable background 
 ## Tech Stack
 
 Plain HTML, CSS, and vanilla JavaScript — no build step, no dependencies. Everything lives in a single `.html` file.
-
+oops now it doesnt.
 ## Getting Started
 
 Just open the file in a browser:
@@ -42,16 +42,19 @@ open index.html
 ```
 
 Or serve it locally (recommended for testing on mobile via your local network):
-
 ```bash
-python3 -m http.server 8000
+npm i -g live-server
+```
+then,
+```bash
+    live-server
 ```
 
-Then visit `http://localhost:8000/index.html`.
+Then visit `http://localhost:8000`.
 
 ## Customization
 
-A couple of values are worth knowing about near the top of the `<script>` block:
+A couple of values are worth knowing about are in `js/_exports.js` block:
 
 - `DEVELOPER_NAME` — credited in the `neofetch` command output.
 - `FACEBOOK_URL` — the link opened when the notification toast is clicked. Currently points to our Facebook group: https://www.facebook.com/groups/1421088291504611/

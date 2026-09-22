@@ -1,0 +1,330 @@
+  :root {
+    --term-bg: #1a1410;
+    --term-bg-2: #14100d;
+    --bar-top: #7a2420;
+    --bar-bottom: #431210;
+    --green: #3fe273;
+    --green-dim: rgba(63, 226, 115, 0.55);
+    --text-dim: rgba(255, 255, 255, 0.55);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', 'Courier New', monospace;
+    background:
+      radial-gradient(900px 700px at 12% 105%, rgba(110, 20, 80, 0.85), transparent 60%),
+      radial-gradient(1000px 800px at 100% -10%, rgba(255, 170, 60, 0.35), transparent 55%),
+      linear-gradient(135deg, #6e1f4a 0%, #97242f 22%, #c03a1f 48%, #d95c1d 72%, #ee7f24 100%);
+  }
+
+  .terminal {
+    display: flex;
+    flex-direction: column;
+    width: clamp(320px, 90vw, 720px);
+    height: clamp(280px, 60vh, 500px);
+    background: var(--term-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 3rem;
+    box-shadow:
+      0 25px 60px rgba(0, 0, 0, 0.45),
+      0 0 0 1px rgba(0, 0, 0, 0.35);
+  }
+
+  .titlebar {
+    flex: 0 0 auto;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    background: linear-gradient(180deg, var(--bar-top), var(--bar-bottom));
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  .tl-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1 1 0;
+  }
+
+  .dot-close {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #e2483b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+  }
+
+  .dot-close svg {
+    width: 8px;
+    height: 8px;
+  }
+
+  .sq-btn {
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    border-radius: 2px;
+  }
+
+  .tl-title {
+    flex: 1 1 auto;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 13px;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tl-right {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .tl-right svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.75);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .term-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 14px 16px;
+    overflow-y: auto;
+    background: radial-gradient(120% 100% at 50% 0%, var(--term-bg) 0%, var(--term-bg-2) 100%);
+    color: var(--green);
+    font-size: clamp(13px, 1.7vw, 16px);
+    line-height: 1.5;
+    cursor: text;
+  }
+
+  .term-body::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .term-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 4px;
+  }
+
+  .line {
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin-bottom: 2px;
+  }
+
+  .c-user {
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  .c-white {
+    color: #e9e9e9;
+  }
+
+  .c-path {
+    color: #7ec4ff;
+    font-weight: 700;
+  }
+
+  .c-input {
+    color: #e9e9e9;
+  }
+
+  .c-dim {
+    color: var(--text-dim);
+  }
+
+  .prompt-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  #typed {
+    color: #e9e9e9;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.05em;
+    margin-left: 3px;
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green-dim);
+    vertical-align: text-bottom;
+    animation: blink 1.25s step-end infinite;
+  }
+
+  .cursor.typing {
+    animation: none;
+    opacity: 1;
+  }
+
+  @keyframes blink {
+
+    0%,
+    49% {
+      opacity: 1;
+    }
+
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  #hiddenInput {
+    position: fixed;
+    top: -100px;
+    left: -100px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    border: none;
+    padding: 0;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .terminal {
+      width: 90vw;
+      height: 60vh;
+      max-width: none;
+      max-height: none;
+      border-radius: 10px;
+    }
+  }
+
+  /* native-style desktop notification (GNOME/libnotify look) */
+  .notification {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translate(-50%, -30px);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    min-width: 260px;
+    max-width: min(88vw, 380px);
+    padding: 12px 14px;
+    background: rgba(32, 30, 34, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 50;
+    font-family: -apple-system, 'Segoe UI', Ubuntu, sans-serif;
+  }
+
+  .notification.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+  }
+
+  .notification-icon {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .notification-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: #0d1f12;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .notification-body {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .notification-app {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 2px;
+    letter-spacing: 0.2px;
+  }
+
+  .notification-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #f2f2f2;
+    line-height: 1.35;
+    word-break: break-word;
+  }
+
+  .notification-text {
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.4;
+    margin-top: 2px;
+    word-break: break-word;
+  }
+
+  .notification-close {
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  .notification-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }

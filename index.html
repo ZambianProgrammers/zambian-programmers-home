@@ -1,309 +1,64 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
-<title>Zambian Programmers</title>
-<meta name="author" content="cholasimmons">
-<meta name="description" content="A community of Programmers who are passionate about code and tech.">
-<meta name="keywords" content="Zambian Programmers, Zambian, Zambia, Simmons, cholasimmons, Programmers, Zambia, Programming, Technology, Developers, Software Engineers, IT Professionals, Computer Science, Software Development, Programming Languages, Programming Concepts, Programming Techniques, Programming Best Practices, Programming Tutorials, Programming Examples, Programming Projects, Programming Challenges, Programming Competitions, Programming Contests " >
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" href="/favicon-32x32.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:image" content="https://s3.zambians.dev/images/zambian_programmers_cover.jpg" >
-<meta property="og:title" content="Zambian Programmers">
-<meta property="og:description" content="A community of Programmers who are passionate about code and tech.">
-<meta property="og:url" content="https://zambians.dev">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Zambian Programmers">
-<meta property="og:image:width" content="1200">
-<style>
-  :root{
-    --term-bg: #1a1410;
-    --term-bg-2: #14100d;
-    --bar-top: #7a2420;
-    --bar-bottom: #431210;
-    --green: #3fe273;
-    --green-dim: rgba(63, 226, 115, 0.55);
-    --text-dim: rgba(255,255,255,0.55);
-  }
-
-  *{ box-sizing: border-box; }
-
-  html, body{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  body{
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', 'Courier New', monospace;
-    background:
-      radial-gradient(900px 700px at 12% 105%, rgba(110,20,80,0.85), transparent 60%),
-      radial-gradient(1000px 800px at 100% -10%, rgba(255,170,60,0.35), transparent 55%),
-      linear-gradient(135deg, #6e1f4a 0%, #97242f 22%, #c03a1f 48%, #d95c1d 72%, #ee7f24 100%);
-  }
-
-  .terminal{
-    display: flex;
-    flex-direction: column;
-    width: clamp(320px, 90vw, 720px);
-    height: clamp(280px, 60vh, 500px);
-    background: var(--term-bg);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-top: 3rem;
-    box-shadow:
-      0 25px 60px rgba(0,0,0,0.45),
-      0 0 0 1px rgba(0,0,0,0.35);
-  }
-
-  .titlebar{
-    flex: 0 0 auto;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
-    background: linear-gradient(180deg, var(--bar-top), var(--bar-bottom));
-    -webkit-user-select: none;
-    user-select: none;
-    cursor: pointer;
-  }
-
-  .tl-left{
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex: 1 1 0;
-  }
-
-  .dot-close{
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: #e2483b;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
-  }
-  .dot-close svg{ width: 8px; height: 8px; }
-
-  .sq-btn{
-    width: 14px;
-    height: 14px;
-    border: 1.5px solid rgba(255,255,255,0.55);
-    border-radius: 2px;
-  }
-
-  .tl-title{
-    flex: 1 1 auto;
-    text-align: center;
-    color: rgba(255,255,255,0.85);
-    font-size: 13px;
-    letter-spacing: 0.2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .tl-right{
-    flex: 1 1 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 12px;
-  }
-
-  .tl-right svg{
-    width: 14px;
-    height: 14px;
-    fill: none;
-    stroke: rgba(255,255,255,0.75);
-    stroke-width: 1.6;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .term-body{
-    position: relative;
-    flex: 1 1 auto;
-    padding: 14px 16px;
-    overflow-y: auto;
-    background: radial-gradient(120% 100% at 50% 0%, var(--term-bg) 0%, var(--term-bg-2) 100%);
-    color: var(--green);
-    font-size: clamp(13px, 1.7vw, 16px);
-    line-height: 1.5;
-    cursor: text;
-  }
-
-  .term-body::-webkit-scrollbar{ width: 8px; }
-  .term-body::-webkit-scrollbar-thumb{ background: rgba(255,255,255,0.18); border-radius: 4px; }
-
-  .line{
-    white-space: pre-wrap;
-    word-break: break-word;
-    margin-bottom: 2px;
-  }
-
-  .c-user{ color: var(--green); font-weight: 700; }
-  .c-white{ color: #e9e9e9; }
-  .c-path{ color: #7ec4ff; font-weight: 700; }
-  .c-input{ color: #e9e9e9; }
-  .c-dim{ color: var(--text-dim); }
-
-  .prompt-line{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  #typed{ color: #e9e9e9; white-space: pre-wrap; word-break: break-word; }
-
-  .cursor{
-    display: inline-block;
-    width: 8px;
-    height: 1.05em;
-    margin-left: 3px;
-    background: var(--green);
-    box-shadow: 0 0 6px var(--green-dim);
-    vertical-align: text-bottom;
-    animation: blink 1.25s step-end infinite;
-  }
-  .cursor.typing{ animation: none; opacity: 1; }
-
-  @keyframes blink{
-    0%, 49%   { opacity: 1; }
-    50%, 100% { opacity: 0; }
-  }
-
-  #hiddenInput{
-    position: fixed;
-    top: -100px;
-    left: -100px;
-    width: 1px;
-    height: 1px;
-    opacity: 0;
-    border: none;
-    padding: 0;
-    pointer-events: none;
-  }
-
-  @media (max-width: 768px){
-    .terminal{
-      width: 90vw;
-      height: 60vh;
-      max-width: none;
-      max-height: none;
-      border-radius: 10px;
-    }
-  }
-
-  /* native-style desktop notification (GNOME/libnotify look) */
-  .notification{
-    position: fixed;
-    top: 18px;
-    left: 50%;
-    transform: translate(-50%, -30px);
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    min-width: 260px;
-    max-width: min(88vw, 380px);
-    padding: 12px 14px;
-    background: rgba(32, 30, 34, 0.92);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-radius: 12px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.06);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    z-index: 50;
-    font-family: -apple-system, 'Segoe UI', Ubuntu, sans-serif;
-  }
-  .notification.show{
-    opacity: 1;
-    transform: translate(-50%, 0);
-    pointer-events: auto;
-  }
-  .notification-icon{
-    flex: 0 0 auto;
-    width: 30px;
-    height: 30px;
-    border-radius: 7px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .notification-icon svg{ width: 16px; height: 16px; stroke: #0d1f12; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .notification-body{ flex: 1 1 auto; min-width: 0; }
-  .notification-app{
-    font-size: 11px;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: 2px;
-    letter-spacing: 0.2px;
-  }
-  .notification-title{
-    font-size: 13.5px;
-    font-weight: 600;
-    color: #f2f2f2;
-    line-height: 1.35;
-    word-break: break-word;
-  }
-  .notification-text{
-    font-size: 12.5px;
-    color: rgba(255,255,255,0.72);
-    line-height: 1.4;
-    margin-top: 2px;
-    word-break: break-word;
-  }
-  .notification-close{
-    flex: 0 0 auto;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.45);
-    cursor: pointer;
-    font-size: 13px;
-    line-height: 1;
-  }
-  .notification-close:hover{ background: rgba(255,255,255,0.1); color: #fff; }
-</style>
-
-<!-- On-premise Analytics -->
-<script defer src="https://analytics.zambians.dev/script.js" data-website-id="971cb92d-415e-434d-b574-b3f163398200"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+  <title>Zambian Programmers</title>
+  <meta name="author" content="cholasimmons">
+  <meta name="description" content="A community of Programmers who are passionate about code and tech.">
+  <meta name="keywords"
+    content="Zambian Programmers, Zambian, Zambia, Simmons, cholasimmons, Programmers, Zambia, Programming, Technology, Developers, Software Engineers, IT Professionals, Computer Science, Software Development, Programming Languages, Programming Concepts, Programming Techniques, Programming Best Practices, Programming Tutorials, Programming Examples, Programming Projects, Programming Challenges, Programming Competitions, Programming Contests ">
+  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  <link rel="icon" type="image/png" href="./assets/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+  <meta property="og:image" content="https://s3.zambians.dev/images/zambian_programmers_cover.jpg">
+  <meta property="og:title" content="Zambian Programmers">
+  <meta property="og:description" content="A community of Programmers who are passionate about code and tech.">
+  <meta property="og:url" content="https://zambians.dev">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Zambian Programmers">
+  <meta property="og:image:width" content="1200">
+  <link rel="stylesheet" href="./css/app.css">
+  <!-- On-premise Analytics -->
+  <script defer src="https://analytics.zambians.dev/script.js"
+    data-website-id="971cb92d-415e-434d-b574-b3f163398200"></script>
 </head>
+
 <body>
 
   <div class="terminal" id="terminal">
     <div class="titlebar" id="titlebar">
       <div class="tl-left">
         <span class="dot-close">
-          <svg viewBox="0 0 10 10"><path d="M1.5 1.5 L8.5 8.5 M8.5 1.5 L1.5 8.5" stroke="#4a0f0c" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 10 10">
+            <path d="M1.5 1.5 L8.5 8.5 M8.5 1.5 L1.5 8.5" stroke="#4a0f0c" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
         </span>
         <span class="sq-btn"></span>
       </div>
       <div class="tl-title"><span id="tbUser">user</span>@zambians.dev:~$</div>
       <div class="tl-right">
-        <svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><line x1="21" y1="21" x2="15.5" y2="15.5"/></svg>
-        <svg viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
-        <svg viewBox="0 0 24 24"><line x1="5" y1="18" x2="19" y2="18"/></svg>
-        <svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="1"/></svg>
+        <svg viewBox="0 0 24 24">
+          <circle cx="10.5" cy="10.5" r="6" />
+          <line x1="21" y1="21" x2="15.5" y2="15.5" />
+        </svg>
+        <svg viewBox="0 0 24 24">
+          <line x1="4" y1="7" x2="20" y2="7" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="17" x2="20" y2="17" />
+        </svg>
+        <svg viewBox="0 0 24 24">
+          <line x1="5" y1="18" x2="19" y2="18" />
+        </svg>
+        <svg viewBox="0 0 24 24">
+          <rect x="5" y="5" width="14" height="14" rx="1" />
+        </svg>
         <span class="dot-close">
-          <svg viewBox="0 0 10 10"><path d="M1.5 1.5 L8.5 8.5 M8.5 1.5 L1.5 8.5" stroke="#4a0f0c" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <svg viewBox="0 0 10 10">
+            <path d="M1.5 1.5 L8.5 8.5 M8.5 1.5 L1.5 8.5" stroke="#4a0f0c" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
         </span>
       </div>
     </div>
@@ -311,7 +66,9 @@
     <div class="term-body" id="termBody">
       <div id="lines"></div>
       <div class="prompt-line" id="promptLine">
-        <span class="c-user" id="promptUser">user</span><span class="c-user">@zambians.dev</span><span class="c-white">:</span><span class="c-path">~</span><span class="c-white">$</span><span>&nbsp;</span><span id="typed"></span><span class="cursor" id="cursor"></span>
+        <span class="c-user" id="promptUser">user</span><span class="c-user">@zambians.dev</span><span
+          class="c-white">:</span><span class="c-path">~</span><span class="c-white">$</span><span>&nbsp;</span><span
+          id="typed"></span><span class="cursor" id="cursor"></span>
       </div>
     </div>
   </div>
@@ -320,7 +77,7 @@
 
   <div class="notification" id="notification">
     <div class="notification-icon">
-      <img src="./zambian_programmers_logo_dark.jpg" alt="" width="32" height="32">
+      <img src="./assets/images/zambian_programmers_logo_light.svg" alt="" width="32" height="32">
     </div>
     <div class="notification-body">
       <div class="notification-app" id="notifApp">zambians.dev</div>
@@ -330,272 +87,8 @@
     <div class="notification-close" id="notifClose">✕</div>
   </div>
 
-<script>
-  const termBody   = document.getElementById('termBody');
-  const linesEl    = document.getElementById('lines');
-  const typedEl    = document.getElementById('typed');
-  const cursorEl   = document.getElementById('cursor');
-  const input      = document.getElementById('hiddenInput');
-  const terminalEl = document.getElementById('terminal');
-  const titlebarEl = document.getElementById('titlebar');
-  const notifEl    = document.getElementById('notification');
-  const notifApp   = document.getElementById('notifApp');
-  const notifTitle = document.getElementById('notifTitle');
-  const notifText  = document.getElementById('notifText');
-  const notifClose = document.getElementById('notifClose');
-
-  // Developer's name, appended to `neofetch` output.
-  const DEVELOPER_NAME = 'cholasimmons';
-
-  const USERNAME_COOKIE = 'zt_username';
-  const DEFAULT_USERNAME = 'user';
-  const tbUserEl = document.getElementById('tbUser');
-  const promptUserEl = document.getElementById('promptUser');
-
-  function setCookie(name, value, days){
-    const d = new Date();
-    d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
-    document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
-  }
-
-  function getCookie(name){
-    const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
-    return match ? decodeURIComponent(match[1]) : null;
-  }
-
-  let currentUsername = getCookie(USERNAME_COOKIE) || DEFAULT_USERNAME;
-
-  function applyUsername(){
-    tbUserEl.textContent = currentUsername;
-    promptUserEl.textContent = currentUsername;
-  }
-
-  let cmdHistory = [];
-  let histIndex = -1;
-  let blinkTimeout = null;
-  let notifHideTimeout = null;
-
-  function escapeHtml(s){
-    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  }
-
-  function promptMarkup(){
-    return '<span class="c-user">' + escapeHtml(currentUsername) + '@zambians.dev</span><span class="c-white">:</span><span class="c-path">~</span><span class="c-white">$</span>';
-  }
-
-  function addLine(html){
-    const div = document.createElement('div');
-    div.className = 'line';
-    div.innerHTML = html;
-    linesEl.appendChild(div);
-  }
-
-  function scrollToBottom(){
-    termBody.scrollTop = termBody.scrollHeight;
-  }
-
-  function neofetchOutput(){
-    const header = currentUsername + '@zambians.dev';
-    return [
-      header,
-      '-'.repeat(header.length),
-      'OS: Ubuntu 24.04 LTS x86_64',
-      'Kernel: 6.8.0-generic',
-      'Shell: bash 5.2',
-      'Terminal: zambians.dev',
-      'CPU: Virtual Core (4)',
-      'Memory: 2048MiB / 7860MiB',
-      'Developer: ' + escapeHtml(DEVELOPER_NAME)
-    ].join('<br>');
-  }
-
-  function unameOutput(flag){
-    if(flag === '-a'){
-      return 'Linux zambians-dev 6.8.0-51-generic #52-Ubuntu SMP PREEMPT_DYNAMIC x86_64 GNU/Linux';
-    }
-    return 'Linux';
-  }
-
-  function showNotification(title, body, appLabel, url){
-    notifApp.textContent = appLabel || 'zambians.dev';
-    notifTitle.textContent = title || '';
-    notifText.textContent = body || '';
-    notifText.style.display = body ? 'block' : 'none';
-    notifEl.classList.add('show');
-
-    if(url){
-      notifEl.style.cursor = 'pointer';
-      notifEl.onclick = () => window.open(url, '_blank', 'noopener');
-    } else {
-      notifEl.style.cursor = 'default';
-      notifEl.onclick = null;
-    }
-
-    clearTimeout(notifHideTimeout);
-    notifHideTimeout = setTimeout(hideNotification, 5000);
-  }
-
-  function hideNotification(){
-    notifEl.classList.remove('show');
-    clearTimeout(notifHideTimeout);
-  }
-
-  notifClose.addEventListener('click', (e) => {
-    e.stopPropagation();
-    hideNotification();
-  });
-
-  // Parses: notify-send "Title" "Optional body"  (also allows unquoted single-word args)
-  function parseNotifyArgs(str){
-    const re = /"([^"]*)"|'([^']*)'|(\S+)/g;
-    const out = [];
-    let m;
-    while((m = re.exec(str)) !== null){
-      out.push(m[1] !== undefined ? m[1] : (m[2] !== undefined ? m[2] : m[3]));
-    }
-    return out;
-  }
-
-  function runCommand(raw){
-    const cmd = raw.trim();
-    addLine(promptMarkup() + '&nbsp;<span class="c-input">' + escapeHtml(raw) + '</span>');
-
-    if(cmd.length === 0){ scrollToBottom(); return; }
-
-    cmdHistory.push(cmd);
-    histIndex = cmdHistory.length;
-
-    const parts = cmd.split(/\s+/);
-    const name = parts[0].toLowerCase();
-    const arg = parts.slice(1).join(' ');
-
-    switch(name){
-      case 'help':
-        addLine('Available commands: help, whoami, pwd, ls, date, echo, uname, su, notify-send, neofetch, history, clear');
-        break;
-      case 'whoami':
-        addLine(currentUsername);
-        break;
-      case 'su': {
-        const newName = parts[1];
-        if(!newName){
-          addLine('<span class="c-dim">Usage: su &lt;username&gt;</span>');
-        } else if(!/^[A-Za-z_][A-Za-z0-9_-]{0,20}$/.test(newName)){
-          addLine('su: invalid user name &#39;' + escapeHtml(newName) + '&#39;');
-        } else {
-          currentUsername = newName;
-          setCookie(USERNAME_COOKIE, currentUsername, 365);
-          applyUsername();
-        }
-        break;
-      }
-      case 'pwd':
-        addLine('/home/user');
-        break;
-      case 'ls':
-        addLine('Desktop  Documents  Downloads  Music  Pictures  Videos  projects');
-        break;
-      case 'date':
-        addLine(new Date().toString());
-        break;
-      case 'echo':
-        addLine(escapeHtml(arg));
-        break;
-      case 'clear':
-        linesEl.innerHTML = '';
-        break;
-      case 'history':
-        addLine(cmdHistory.map((h, i) => (i + 1) + '  ' + escapeHtml(h)).join('<br>'));
-        break;
-      case 'neofetch':
-        addLine(neofetchOutput());
-        break;
-      case 'uname':
-        addLine(unameOutput(arg.trim()));
-        break;
-      case 'notify-send': {
-        const notifArgs = parseNotifyArgs(cmd.slice(name.length).trim());
-        if(notifArgs.length === 0){
-          addLine('<span class="c-dim">Usage: notify-send "Title" ["Body"]</span>');
-        } else {
-          showNotification(notifArgs[0], notifArgs[1] || '');
-        }
-        break;
-      }
-      case 'sudo':
-        addLine('<span class="c-dim">user is not in the sudoers file. This incident will be reported.</span>');
-        break;
-      case 'exit':
-        addLine('logout');
-        break;
-      default:
-        addLine('bash: ' + escapeHtml(name) + ': command not found');
-    }
-    scrollToBottom();
-  }
-
-  // Pauses the terminal's blinking cursor.
-  function pauseBlink(){
-    cursorEl.classList.add('typing');
-    clearTimeout(blinkTimeout);
-    blinkTimeout = setTimeout(() => cursorEl.classList.remove('typing'), 450);
-  }
-
-  input.addEventListener('input', () => {
-    typedEl.textContent = input.value;
-    pauseBlink();
-    scrollToBottom();
-  });
-
-  input.addEventListener('keydown', (e) => {
-    if(e.key === 'Enter'){
-      e.preventDefault();
-      runCommand(input.value);
-      input.value = '';
-      typedEl.textContent = '';
-      pauseBlink();
-    } else if(e.key === 'ArrowUp'){
-      e.preventDefault();
-      if(cmdHistory.length && histIndex > 0){
-        histIndex--;
-        input.value = cmdHistory[histIndex];
-        typedEl.textContent = input.value;
-      }
-    } else if(e.key === 'ArrowDown'){
-      e.preventDefault();
-      if(histIndex < cmdHistory.length - 1){
-        histIndex++;
-        input.value = cmdHistory[histIndex];
-      } else {
-        histIndex = cmdHistory.length;
-        input.value = '';
-      }
-      typedEl.textContent = input.value;
-    }
-  });
-
-  // Facebook group URL.
-  const FACEBOOK_URL = 'https://www.facebook.com/groups/1421088291504611/';
-
-  // Initiates the native-style desktop notification.
-  function announceFacebookGroup(){
-    showNotification(
-      'Website in development',
-      'Follow Zambian Programmers on Facebook',
-      'zambians.dev',
-      FACEBOOK_URL
-    );
-  }
-
-  terminalEl.addEventListener('click', () => input.focus());
-  // Clicking the terminal's title bar reveals the native-style desktop notification again.
-  titlebarEl.addEventListener('click', announceFacebookGroup);
-  // On page load, the terminal's input field is focused and the native-style desktop notification is displayed the first time.
-  window.addEventListener('load', () => {
-    applyUsername();
-    input.focus();
-    setTimeout(announceFacebookGroup, 1200);
-  });
-</script>
+  <script type="module" src="./js/app.js">
+  </script>
 </body>
+
 </html>
